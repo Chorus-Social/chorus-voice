@@ -37,6 +37,31 @@
                 placeholder="Choose a display name"
                 class="input-field mt-1"
               />
+              <!-- Privacy Warning -->
+              <div class="mt-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">
+                      Privacy Warning
+                    </h3>
+                    <div class="mt-1 text-sm text-red-700">
+                      <p>Never use your real name, username, or any information that could identify you. This includes:</p>
+                      <ul class="mt-1 list-disc list-inside space-y-1">
+                        <li>Your actual name or nickname</li>
+                        <li>Birth year, location, or personal details</li>
+                        <li>Usernames from other platforms</li>
+                        <li>References to your job, hobbies, or lifestyle</li>
+                      </ul>
+                      <p class="mt-2 font-medium">Choose something completely anonymous to protect your privacy.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div>

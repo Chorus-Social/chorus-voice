@@ -81,6 +81,21 @@
                       </svg>
                     </button>
                   </div>
+                  <!-- Privacy Warning when editing -->
+                  <div v-if="isEditingName" class="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
+                    <div class="flex">
+                      <div class="flex-shrink-0">
+                        <svg class="h-4 w-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                      </div>
+                      <div class="ml-2">
+                        <p class="text-xs font-medium text-red-800">
+                          Privacy Warning: Never use your real name or any identifying information
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                   <button
                     v-if="!isEditingName"
                     @click="startEditName"
@@ -136,6 +151,21 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
+                  </div>
+                  <!-- Privacy Warning when editing (mobile view) -->
+                  <div v-if="isEditingName" class="mt-2 p-2 bg-red-50 border border-red-200 rounded text-xs">
+                    <div class="flex">
+                      <div class="flex-shrink-0">
+                        <svg class="h-3 w-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                      </div>
+                      <div class="ml-1">
+                        <p class="text-red-800 font-medium">
+                          Privacy: Never use your real name or identifying information
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   <button
                     v-if="!isEditingName"
