@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-16 w-16 flex items-center justify-center">
-          <div class="h-12 w-12 bg-chorus-600 rounded-lg flex items-center justify-center">
+          <div class="h-12 w-12 accent-bg rounded-lg flex items-center justify-center">
             <span class="text-white font-bold text-xl">C</span>
           </div>
         </div>
@@ -266,7 +266,7 @@
               <button
                 @click="parseTextFormat"
                 :disabled="!textToParse.trim()"
-                class="mt-2 text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="mt-2 text-xs btn-primary px-3 py-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Parse Text
               </button>
@@ -315,7 +315,7 @@
                 <button
                   @click="useKeypair(key)"
                   :disabled="isLoading"
-                  class="px-3 py-1 text-xs font-medium text-chorus-600 bg-chorus-100 hover:bg-chorus-200 rounded-md disabled:opacity-50"
+                  class="px-3 py-1 text-xs font-medium accent-text bg-gray-100 hover:bg-gray-200 rounded-md disabled:opacity-50"
                 >
                   Use
                 </button>
@@ -376,7 +376,7 @@
       <div class="text-center">
         <button
           @click="goBack"
-          class="text-sm text-chorus-600 hover:text-chorus-500"
+          class="text-sm accent-text hover:opacity-70"
         >
           ← Back to Server Connection
         </button>

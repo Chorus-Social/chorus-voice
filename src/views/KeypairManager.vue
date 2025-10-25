@@ -130,7 +130,7 @@
                     :checked="selectedKeys.includes(key.keyId)"
                     @change="toggleKeySelection(key.keyId)"
                     @click.stop
-                    class="h-5 w-5 text-chorus-600 focus:ring-chorus-500 border-gray-300 rounded cursor-pointer"
+                    class="h-5 w-5 accent-text focus:ring-2 focus:ring-opacity-50 border-gray-300 rounded cursor-pointer"
                   />
                   <div class="flex-shrink-0">
                     <div 
@@ -172,7 +172,7 @@
                   <button
                     v-if="!key.isDefault"
                     @click="setAsDefault(key.keyId)"
-                    class="text-gray-400 hover:text-chorus-600"
+                    class="text-gray-400 hover:accent-text"
                     title="Set as default"
                   >
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@
                   
                   <button
                     @click="useKeypair(key)"
-                    class="text-chorus-600 hover:text-chorus-700 font-medium"
+                    class="accent-text hover:opacity-70 font-medium"
                   >
                     Use
                   </button>
@@ -233,7 +233,7 @@
             <button
               @click="generateKeypair"
               :disabled="isGenerating"
-              class="px-4 py-2 text-sm font-medium text-white bg-chorus-600 hover:bg-chorus-700 rounded-md disabled:opacity-50"
+              class="px-4 py-2 text-sm font-medium text-white btn-primary rounded-md disabled:opacity-50"
             >
               {{ isGenerating ? 'Generating...' : 'Generate' }}
             </button>
@@ -270,7 +270,7 @@
             <button
               @click="saveKeyName"
               :disabled="isSaving"
-              class="px-4 py-2 text-sm font-medium text-white bg-chorus-600 hover:bg-chorus-700 rounded-md disabled:opacity-50"
+              class="px-4 py-2 text-sm font-medium text-white btn-primary rounded-md disabled:opacity-50"
             >
               {{ isSaving ? 'Saving...' : 'Save' }}
             </button>

@@ -14,7 +14,16 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-chorus-600 hover:bg-chorus-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    background-color: var(--accent-color, #0ea5e9);
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--accent-color-hover, #0284c7);
   }
   
   .btn-secondary {
@@ -22,10 +31,27 @@
   }
   
   .input-field {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-chorus-500 focus:border-transparent;
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none transition-colors duration-200;
+  }
+  
+  .input-field:focus {
+    border-color: var(--accent-color, #0ea5e9);
+    box-shadow: 0 0 0 3px var(--accent-color-subtle, #e0f2fe);
   }
   
   .card {
     @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+  
+  .accent-text {
+    color: var(--accent-color, #0ea5e9);
+  }
+  
+  .accent-bg {
+    background-color: var(--accent-color, #0ea5e9);
+  }
+  
+  .accent-border {
+    border-color: var(--accent-color, #0ea5e9);
   }
 }

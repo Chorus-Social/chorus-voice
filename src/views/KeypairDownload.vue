@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-16 w-16 flex items-center justify-center">
-          <div class="h-12 w-12 bg-chorus-600 rounded-lg flex items-center justify-center">
+          <div class="h-12 w-12 accent-bg rounded-lg flex items-center justify-center">
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
@@ -33,7 +33,7 @@
             </div>
             <button
               @click="copyToClipboard(publicKeyHex)"
-              class="mt-2 text-sm text-chorus-600 hover:text-chorus-500"
+              class="mt-2 text-sm accent-text hover:opacity-70"
             >
               📋 Copy Public Key
             </button>
@@ -49,7 +49,7 @@
             </div>
             <button
               @click="copyToClipboard(user?.user_id || '')"
-              class="mt-2 text-sm text-chorus-600 hover:text-chorus-500"
+              class="mt-2 text-sm accent-text hover:opacity-70"
             >
               📋 Copy User ID
             </button>

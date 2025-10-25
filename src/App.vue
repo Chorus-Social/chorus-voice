@@ -16,7 +16,7 @@
   - No sensitive data exposed in template
 -->
 <template>
-  <div id="app" class="min-h-screen bg-gray-50">
+  <div id="app" class="min-h-screen bg-gray-50" :style="cssProperties">
     <!-- Header with Avatar (only show on authenticated pages) -->
     <header v-if="showHeader" class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +24,7 @@
           <!-- Logo/Brand -->
           <div class="flex items-center">
             <router-link to="/feed" class="flex items-center space-x-2">
-              <div class="h-8 w-8 bg-chorus-600 rounded-lg flex items-center justify-center">
+              <div class="h-8 w-8 accent-bg rounded-lg flex items-center justify-center">
                 <span class="text-white font-bold text-lg">C</span>
               </div>
               <span class="text-xl font-bold text-gray-900">Chorus</span>
@@ -36,14 +36,14 @@
             <router-link 
               to="/feed" 
               class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              :class="{ 'text-chorus-600 bg-chorus-50': $route.name === 'feed' }"
+              :class="{ 'accent-text bg-gray-50': $route.name === 'feed' }"
             >
               Feed
             </router-link>
             <router-link 
               to="/create" 
               class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
-              :class="{ 'text-chorus-600 bg-chorus-50': $route.name === 'create' }"
+              :class="{ 'accent-text bg-gray-50': $route.name === 'create' }"
             >
               Create Post
             </router-link>
@@ -89,12 +89,14 @@ import { computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useConfigStore } from '@/stores/config'
+import { useAccentColor } from '@/composables/useAccentColor'
 
 // Initialize stores and router
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
 const configStore = useConfigStore()
+const { cssProperties } = useAccentColor()
 
 // Load configuration on application startup
 onMounted(() => {

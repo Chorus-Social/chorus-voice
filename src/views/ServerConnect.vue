@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-16 w-16 flex items-center justify-center">
-          <div class="h-12 w-12 bg-chorus-600 rounded-lg flex items-center justify-center">
+          <div class="h-12 w-12 accent-bg rounded-lg flex items-center justify-center">
             <span class="text-white font-bold text-xl">C</span>
           </div>
         </div>
@@ -108,7 +108,7 @@
       <!-- Help Text -->
       <div class="text-center">
         <p class="text-xs text-gray-500">
-          Need help? Check the <a href="#" class="text-chorus-600 hover:text-chorus-500">documentation</a>
+          Need help? Check the <a href="#" class="accent-text hover:opacity-70">documentation</a>
         </p>
       </div>
     </div>
