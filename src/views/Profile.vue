@@ -66,7 +66,8 @@
                     />
                     <button
                       @click="saveDisplayName"
-                      class="text-green-600 hover:text-green-700"
+                      :style="{ color: user?.accent_color || '#0ea5e9' }"
+                      class="hover:opacity-70 transition-opacity"
                     >
                       <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -99,7 +100,8 @@
                   <button
                     v-if="!isEditingName"
                     @click="startEditName"
-                    class="text-gray-400 hover:text-gray-600"
+                    :style="{ color: user?.accent_color || '#0ea5e9' }"
+                    class="hover:opacity-70 transition-opacity"
                   >
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -137,7 +139,8 @@
                     />
                     <button
                       @click="saveDisplayName"
-                      class="text-green-600 hover:text-green-700"
+                      :style="{ color: user?.accent_color || '#0ea5e9' }"
+                      class="hover:opacity-70 transition-opacity"
                     >
                       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -170,7 +173,8 @@
                   <button
                     v-if="!isEditingName"
                     @click="startEditName"
-                    class="text-gray-400 hover:text-gray-600"
+                    :style="{ color: user?.accent_color || '#0ea5e9' }"
+                    class="hover:opacity-70 transition-opacity"
                   >
                     <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -225,7 +229,8 @@
                       />
                       <button
                         @click="saveAccentColor"
-                        class="text-green-600 hover:text-green-700"
+                        :style="{ color: user?.accent_color || '#0ea5e9' }"
+                        class="hover:opacity-70 transition-opacity"
                       >
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -243,7 +248,8 @@
                     <button
                       v-if="!isEditingColor"
                       @click="startEditColor"
-                      class="text-gray-400 hover:text-gray-600"
+                      :style="{ color: user?.accent_color || '#0ea5e9' }"
+                      class="hover:opacity-70 transition-opacity"
                     >
                       <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -362,19 +368,19 @@
         </div>
 
         <!-- Pending Changes Notice with Save Button -->
-        <div v-if="hasPendingChanges" class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div v-if="hasPendingChanges" class="bg-green-50 border border-green-200 rounded-lg p-4">
           <div class="flex items-start justify-between">
             <div class="flex">
               <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
               </div>
               <div class="ml-3">
-                <h3 class="text-sm font-medium text-yellow-800">
+                <h3 class="text-sm font-medium text-green-800">
                   You have unsaved changes
                 </h3>
-                <p class="mt-1 text-sm text-yellow-700">
+                <p class="mt-1 text-sm text-green-700">
                   Your changes have been saved locally. Click "Save Changes" to sync them with the server.
                 </p>
               </div>
@@ -383,7 +389,11 @@
             <button
               @click="saveChangesToServer"
               :disabled="isSaving"
-              class="ml-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+              :style="{ 
+                backgroundColor: user?.accent_color || '#0ea5e9',
+                '--hover-color': user?.accent_color ? adjustColor(user.accent_color, -20) : '#0284c7'
+              }"
+              class="ml-4 text-white px-4 py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center hover:opacity-90"
             >
               <span v-if="isSaving" class="flex items-center">
                 <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -407,7 +417,11 @@
             <div class="space-y-4">
               <button
                 @click="downloadKeypair"
-                class="w-full sm:w-auto bg-chorus-600 text-white px-4 py-2 rounded-md hover:bg-chorus-700 transition-colors"
+                :style="{ 
+                  backgroundColor: user?.accent_color || '#0ea5e9',
+                  '--hover-color': user?.accent_color ? adjustColor(user.accent_color, -20) : '#0284c7'
+                }"
+                class="w-full sm:w-auto text-white px-4 py-2 rounded-md transition-colors hover:opacity-90"
               >
                 Download Keypair Backup
               </button>
@@ -436,6 +450,25 @@ const router = useRouter()
 const authStore = useAuthStore()
 
 const user = computed(() => authStore.user)
+
+// Helper function to adjust color brightness
+function adjustColor(color: string, amount: number): string {
+  // Remove # if present
+  const hex = color.replace('#', '')
+  
+  // Convert to RGB
+  const r = parseInt(hex.substr(0, 2), 16)
+  const g = parseInt(hex.substr(2, 2), 16)
+  const b = parseInt(hex.substr(4, 2), 16)
+  
+  // Adjust brightness
+  const newR = Math.max(0, Math.min(255, r + amount))
+  const newG = Math.max(0, Math.min(255, g + amount))
+  const newB = Math.max(0, Math.min(255, b + amount))
+  
+  // Convert back to hex
+  return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`
+}
 
 // Check authentication on mount
 onMounted(() => {
