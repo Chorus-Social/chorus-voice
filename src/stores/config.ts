@@ -53,7 +53,7 @@ export const useConfigStore = defineStore('config', () => {
       isConnected.value = success
       
       if (success) {
-        // Always use the full URL for dynamic connection with CORS configured
+        // Set the base URL for the API service
         apiService.setBaseURL(normalizedURL.value)
         // Store the URL in localStorage for persistence
         localStorage.setItem('stage_url', normalizedURL.value)
@@ -89,7 +89,12 @@ export const useConfigStore = defineStore('config', () => {
       const defaultURL = 'http://localhost:8001'
       console.log('🔧 No saved URL, setting default:', defaultURL)
       setStageURL(defaultURL)
-      // Don't auto-test connection for default URL to avoid errors
+      
+      // In development mode, auto-test connection since we have proxy
+      if (import.meta.env.DEV) {
+        console.log('🔧 Development mode: Auto-testing connection with proxy')
+        testConnection()
+      }
     }
   }
   

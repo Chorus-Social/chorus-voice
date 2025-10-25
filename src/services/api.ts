@@ -129,12 +129,20 @@ export class APIService {
   
   /**
    * Set the base URL for the API
+   * In development, uses relative URLs to leverage Vite proxy
+   * In production, uses the full backend URL
    */
   setBaseURL(url: string) {
-    this.baseURL = url.replace(/\/$/, '') // Remove trailing slash
-    this.client.defaults.baseURL = this.baseURL
-    console.log('🌐 API base URL set to:', this.baseURL)
-    console.log('🌐 Full profile URL would be:', this.baseURL + '/api/v1/users/me/profile')
+    // In development mode, use relative URLs to leverage Vite proxy
+    if (import.meta.env.DEV) {
+      this.baseURL = '' // Use relative URLs in development
+      this.client.defaults.baseURL = ''
+      console.log('🌐 Development mode: Using relative URLs with Vite proxy')
+    } else {
+      this.baseURL = url.replace(/\/$/, '') // Remove trailing slash
+      this.client.defaults.baseURL = this.baseURL
+      console.log('🌐 Production mode: API base URL set to:', this.baseURL)
+    }
   }
   
   /**
@@ -177,9 +185,17 @@ export class APIService {
       console.log('🔍 Testing connection to:', url)
       const testClient = axios.create({ timeout: 5000 })
       
-      // Always use the full URL for testing with CORS configured
-      const healthUrl = `${url}/health`
-      console.log('🏥 Health check URL:', healthUrl)
+      let healthUrl: string
+      if (import.meta.env.DEV) {
+        // In development, use relative URL to leverage Vite proxy
+        healthUrl = '/health'
+        console.log('🏥 Development mode: Using relative health check URL:', healthUrl)
+      } else {
+        // In production, use the full URL
+        healthUrl = `${url}/health`
+        console.log('🏥 Production mode: Health check URL:', healthUrl)
+      }
+      
       const response = await testClient.get(healthUrl)
       console.log('✅ Health check successful:', response.status)
       return response.status === 200
