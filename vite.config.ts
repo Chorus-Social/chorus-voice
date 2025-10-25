@@ -16,9 +16,10 @@ export default defineConfig({
       overlay: true
     },
     // Proxy API requests to backend server to avoid CORS issues
+    // Note: This is a basic proxy setup. For dynamic URLs, we'll handle CORS differently
     proxy: {
       '/api': {
-        target: 'http://localhost:8001',
+        target: 'http://localhost:8001', // Default fallback
         changeOrigin: true,
         secure: false,
         configure: (proxy, _options) => {
@@ -34,7 +35,7 @@ export default defineConfig({
         },
       },
       '/health': {
-        target: 'http://localhost:8001',
+        target: 'http://localhost:8001', // Default fallback
         changeOrigin: true,
         secure: false,
       }

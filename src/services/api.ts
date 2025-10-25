@@ -1,4 +1,5 @@
 import axios, { type AxiosInstance, type AxiosResponse } from 'axios'
+import { createCorsConfig, getDevelopmentUrl, isDevelopment } from '@/utils/cors-helper'
 import type {
   ChallengeRequest,
   ChallengeResponse,
@@ -53,13 +54,7 @@ export class APIService {
   private readonly CACHE_TTL = 30000 // 30 seconds cache TTL
   
   constructor() {
-    this.client = axios.create({
-      timeout: 30000,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest' // CSRF protection
-      }
-    })
+    this.client = axios.create(createCorsConfig())
     
     // Add request interceptor for auth token and rate limiting
     this.client.interceptors.request.use(
@@ -129,20 +124,18 @@ export class APIService {
   
   /**
    * Set the base URL for the API
-   * In development, uses relative URLs to leverage Vite proxy
-   * In production, uses the full backend URL
+   * Uses the full backend URL for dynamic Stage URLs
    */
   setBaseURL(url: string) {
-    // In development mode, use relative URLs to leverage Vite proxy
-    if (import.meta.env.DEV) {
-      this.baseURL = '' // Use relative URLs in development
-      this.client.defaults.baseURL = ''
-      console.log('🌐 Development mode: Using relative URLs with Vite proxy')
-    } else {
-      this.baseURL = url.replace(/\/$/, '') // Remove trailing slash
-      this.client.defaults.baseURL = this.baseURL
-      console.log('🌐 Production mode: API base URL set to:', this.baseURL)
+    this.baseURL = url.replace(/\/$/, '') // Remove trailing slash
+    this.client.defaults.baseURL = this.baseURL
+    
+    // Log development warnings for CORS
+    if (isDevelopment) {
+      getDevelopmentUrl(url)
     }
+    
+    console.log('🌐 API base URL set to:', this.baseURL)
   }
   
   /**
@@ -183,24 +176,26 @@ export class APIService {
   async testConnection(url: string): Promise<boolean> {
     try {
       console.log('🔍 Testing connection to:', url)
-      const testClient = axios.create({ timeout: 5000 })
+      const testClient = axios.create(createCorsConfig())
       
-      let healthUrl: string
-      if (import.meta.env.DEV) {
-        // In development, use relative URL to leverage Vite proxy
-        healthUrl = '/health'
-        console.log('🏥 Development mode: Using relative health check URL:', healthUrl)
-      } else {
-        // In production, use the full URL
-        healthUrl = `${url}/health`
-        console.log('🏥 Production mode: Health check URL:', healthUrl)
-      }
+      const healthUrl = `${url}/health`
+      console.log('🏥 Health check URL:', healthUrl)
       
       const response = await testClient.get(healthUrl)
       console.log('✅ Health check successful:', response.status)
       return response.status === 200
     } catch (error) {
       console.error('❌ Connection test failed:', error)
+      
+      // Provide helpful CORS debugging information
+      if (isDevelopment) {
+        console.warn('💡 CORS Debugging Tips:')
+        console.warn('   1. Make sure your Stage server is running')
+        console.warn('   2. Check that CORS is enabled for localhost:3000')
+        console.warn('   3. Verify the Stage URL is correct:', url)
+        console.warn('   4. Check browser network tab for detailed error info')
+      }
+      
       return false
     }
   }

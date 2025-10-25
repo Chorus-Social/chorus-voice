@@ -90,11 +90,7 @@ export const useConfigStore = defineStore('config', () => {
       console.log('🔧 No saved URL, setting default:', defaultURL)
       setStageURL(defaultURL)
       
-      // In development mode, auto-test connection since we have proxy
-      if (import.meta.env.DEV) {
-        console.log('🔧 Development mode: Auto-testing connection with proxy')
-        testConnection()
-      }
+      // Don't auto-test connection for default URL to avoid errors
     }
   }
   
