@@ -312,22 +312,60 @@
           </div>
         </div>
 
-        <!-- Pending Changes Notice -->
-        <div v-if="hasPendingChanges" class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <!-- Helpful Message for Users -->
+        <div v-if="!hasPendingChanges && isProfileOwner" class="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <div class="flex">
             <div class="flex-shrink-0">
-              <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div class="ml-3">
-              <h3 class="text-sm font-medium text-yellow-800">
-                You have unsaved changes
+              <h3 class="text-sm font-medium text-blue-800">
+                Profile Information
               </h3>
-              <p class="mt-1 text-sm text-yellow-700">
-                Your changes have been saved locally. Click "Save Changes" to sync them with the server.
+              <p class="mt-1 text-sm text-blue-700">
+                Click on your display name or accent color to edit them. Changes are saved locally first, then you can sync them to the server.
               </p>
             </div>
+          </div>
+        </div>
+
+        <!-- Pending Changes Notice with Save Button -->
+        <div v-if="hasPendingChanges" class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div class="flex items-start justify-between">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-800">
+                  You have unsaved changes
+                </h3>
+                <p class="mt-1 text-sm text-yellow-700">
+                  Your changes have been saved locally. Click "Save Changes" to sync them with the server.
+                </p>
+              </div>
+            </div>
+            <!-- Save Button - Prominently placed -->
+            <button
+              @click="saveChangesToServer"
+              :disabled="isSaving"
+              class="ml-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+            >
+              <span v-if="isSaving" class="flex items-center">
+                <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Saving...
+              </span>
+              <span v-else class="flex items-center">
+                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                Save Changes
+              </span>
+            </button>
           </div>
         </div>
 
@@ -337,20 +375,6 @@
             <h3 class="text-lg font-medium text-gray-900 mb-6">Actions</h3>
             
             <div class="space-y-4">
-              <!-- Save Changes Button -->
-              <button
-                v-if="hasPendingChanges"
-                @click="saveChangesToServer"
-                :disabled="isSaving"
-                class="w-full sm:w-auto bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span v-if="isSaving" class="flex items-center">
-                  <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Saving...
-                </span>
-                <span v-else>💾 Save Changes</span>
-              </button>
-              
               <button
                 @click="downloadKeypair"
                 class="w-full sm:w-auto bg-chorus-600 text-white px-4 py-2 rounded-md hover:bg-chorus-700 transition-colors"
