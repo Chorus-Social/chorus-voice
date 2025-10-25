@@ -1,0 +1,38 @@
+{
+  "name": "chorus-frontend",
+  "version": "1.0.0",
+  "description": "Chorus Social Network Frontend - Privacy-first Vue.js client",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "build:analyze": "vue-tsc && vite build --mode analyze",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "lint": "vue-tsc --noEmit",
+    "clean": "rm -rf dist node_modules/.vite",
+    "audit:fix": "npm audit fix"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.8.0",
+    "axios": "^1.6.2",
+    "dompurify": "^3.0.5",
+    "esbuild": "^0.25.11",
+    "marked": "^9.1.6",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/node": "^24.9.1",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "terser": "^5.44.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "vue-tsc": "^3.1.2"
+  }
+}
